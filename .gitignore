@@ -1,0 +1,8 @@
+.DS_Store
+
+__pycache__
+/venv
+pi/venv
+server/venv
+pi/output
+pi/config.py
