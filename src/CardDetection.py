@@ -4,25 +4,32 @@ import numpy as np
 import cv2
 
 from src.Video import Video
-from src.Cards import Cards
+import src.Cards as Cards
 
 FRAME_WIDTH = 1280
 FRAME_HEIGHT = 720
 FPS = 20
+
+
 
 class CardDetection:
     def __init__(self) -> None:
         pass
 
     def run(self):
-        video = Video((FRAME_WIDTH, FRAME_HEIGHT), FPS, 0)
+        
+        frame_rate_calc = 1
+        freq = cv2.getTickFrequency()
+        font = cv2.FONT_HERSHEY_SIMPLEX
+        
+        
+        video = Video((FRAME_WIDTH, FRAME_HEIGHT), FPS)
         video.start()
-        time.sleep()
+        time.sleep(1)
 
         # Load the train rank and suit images
-        path = os.path.dirname(os.path.abspath(__file__))
-        train_ranks = Cards.load_ranks( path + '/imgs/')
-        train_suits = Cards.load_suits( path + '/imgs/')
+        train_ranks = Cards.load_ranks( './images/')
+        train_suits = Cards.load_suits( './images/')
 
 
         ### ---- MAIN LOOP ---- ###
