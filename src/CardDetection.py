@@ -72,12 +72,12 @@ class CardDetection:
 
                         # Find the best rank and suit match for the card.
                         cards[k].best_rank_match,cards[k].best_suit_match,cards[k].rank_diff,cards[k].suit_diff = Cards.match_card(cards[k],train_ranks,train_suits)
-                        
+
 
                         if cards[k].best_rank_match != "Unknown" and cards[k].best_suit_match != "Unknown":
                             if self.arr.index(cards[k].best_rank_match, "of", cards[k].best_suit_match) != - 1:
                                 self.arr.append(cards[k].best_rank_match, "of", cards[k].best_suit_match)
-                            
+                       
                         
                         
                         # Draw center point and match result on the image.
