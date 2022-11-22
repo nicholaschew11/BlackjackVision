@@ -2,9 +2,12 @@ import os
 import time
 import numpy as np
 import cv2
+from treys import Evaluator
+from treys import Card
+from treys import Deck
 
 from src.Video import Video
-from src.Cards import Cards
+import src.Cards as Cards
 
 FRAME_WIDTH = 1280
 FRAME_HEIGHT = 720
@@ -12,12 +15,135 @@ FPS = 20
 
 class CardDetection:
     def __init__(self) -> None:
-        pass
+        self.arr = []
 
     def run(self):
-        video = Video.Video((FRAME_WIDTH, FRAME_HEIGHT), FPS, 0)
+        
+        frame_rate_calc = 1
+        freq = cv2.getTickFrequency()
+        font = cv2.FONT_HERSHEY_SIMPLEX
+        
+        
+        video = Video((FRAME_WIDTH, FRAME_HEIGHT), FPS)
         video.start()
-        time.sleep()
+        time.sleep(1)
+
+        # Load the train rank and suit images
+        train_ranks = Cards.load_ranks( './images/')
+        train_suits = Cards.load_suits( './images/')
+
+
+        ### ---- MAIN LOOP ---- ###
+        # The main loop repeatedly grabs frames from the video stream
+        # and processes them to find and identify playing cards.
+
+        cam_quit = 0 # Loop control variable
+
+        # Begin capturing frames
+        while cam_quit == 0:
+
+            # Grab frame from video stream
+            image = video.read()
+
+            # Start timer (for calculating frame rate)
+            t1 = cv2.getTickCount()
+
+            # Pre-process camera image (gray, blur, and threshold it)
+            pre_proc = Cards.preprocess_image(image)
+            
+            # Find and sort the contours of all cards in the image (query cards)
+            cnts_sort, cnt_is_card = Cards.find_cards(pre_proc)
+
+            # If there are no contours, do nothing
+            if len(cnts_sort) != 0:
+
+                # Initialize a new "cards" list to assign the card objects.
+                # k indexes the newly made array of cards.
+                cards = []
+                #twin array to hold cards in different format
+                cardsArr=[[]]
+                #array to hold the cards on the board
+                board=[]
+                #probability evaluator
+                evaluator=Evaluator()
+
+                k = 0
+
+                # For each contour detected:
+                for i in range(len(cnts_sort)):
+                    if (cnt_is_card[i] == 1):
+
+                        # Create a card object from the contour and append it to the list of cards.
+                        # preprocess_card function takes the card contour and contour and
+                        # determines the cards properties (corner points, etc). It generates a
+                        # flattened 200x300 image of the card, and isolates the card's
+                        # suit and rank from the image.
+                        cards.append(Cards.preprocess_card(cnts_sort[i],image))
+
+                        # Find the best rank and suit match for the card.
+                        cards[k].best_rank_match,cards[k].best_suit_match,cards[k].rank_diff,cards[k].suit_diff = Cards.match_card(cards[k],train_ranks,train_suits)
+
+
+                        if cards[k].best_rank_match != "Unknown" and cards[k].best_suit_match != "Unknown":
+                            if self.arr.index(cards[k].best_rank_match, "of", cards[k].best_suit_match) != - 1:
+                                self.arr.append(cards[k].best_rank_match, "of", cards[k].best_suit_match)
+                                
+                                #dictionary to store suits and rank keys + values
+                                rank={'Ace':'A','Two':'2','Three':'3','Four':'4','Five':'5','Six':'6','Seven':'7','Eight':'8','Nine':'9','Ten':'T','Jack':'J','Queen':'Q','King':'K'}
+                                suit={'Spades':'s','Diamonds':'d','Clubs':'c','Hearts':'h'}
+
+                                #the first two cards belong to the hand
+                                if len(cardsArr[0]<=2):
+                                    cardsArr[0].append(Card.new(rank[cards[k].best_rank_match]+cards[k].best_suit_match))
+
+                                #the proceding cards belong to the deck
+                                else:
+                                    deck.append(Card.new(rank[cards[k].best_rank_match]+cards[k].best_suit_match))
+
+                                    if(len(deck)>2 and len(deck)<6):
+                                        percentage=evaluator.evaluate(cardsArr[0],board)/6767
+                                        class_rank=evaluator.get_rank_class(evaluator.evaluate(cardsArr[0],board))
+                                        hand=evaluator.class_to_string(evaluator.get_rank_class(evaluator.evaluate(cardsArr[0],board)))
+                        
+                       
+                        
+                        
+                        # Draw center point and match result on the image.
+                        image = Cards.draw_results(image, cards[k])
+                        k = k + 1
+                
+                # Draw card contours on image (have to do contours all at once or
+                # they do not show up properly for some reason)
+                if (len(cards) != 0):
+                    temp_cnts = []
+                    for i in range(len(cards)):
+                        temp_cnts.append(cards[i].contour)
+                    cv2.drawContours(image,temp_cnts, -1, (255,0,0), 2)
+                
+                
+            # Draw framerate in the corner of the image. Framerate is calculated at the end of the main loop,
+            # so the first time this runs, framerate will be shown as 0.
+            cv2.putText(image,"FPS: "+str(int(frame_rate_calc)),(10,26),font,0.7,(255,0,255),2,cv2.LINE_AA)
+
+            # Finally, display the image with the identified cards!
+            cv2.imshow("Card Detector",image)
+
+            # Calculate framerate
+            t2 = cv2.getTickCount()
+            time1 = (t2-t1)/freq
+            frame_rate_calc = 1/time1
+            
+            # Poll the keyboard. If 'q' is pressed, exit the main loop.
+            key = cv2.waitKey(1) & 0xFF
+            if key == ord("q"):
+                cam_quit = 1
+                
+
+        # Close all windows and close the PiCamera video stream.
+        cv2.destroyAllWindows()
+        video.stop()
+
+
 
 
             
