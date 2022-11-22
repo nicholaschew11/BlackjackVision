@@ -265,7 +265,7 @@ def match_card(qCard, train_ranks, train_suits):
                 if suit_diff < best_suit_match_diff:
                     best_suit_diff_img = diff_img
                     best_suit_match_diff = suit_diff
-                    best_suit_name = Tsuit.name
+                    best_suit_name = Tsuit.name[0]
 
     # Combine best rank match and best suit match to get query card's identity.
     # If the best matches have too high of a difference value, card identity
