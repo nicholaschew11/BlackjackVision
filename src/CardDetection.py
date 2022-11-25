@@ -98,9 +98,9 @@ class CardDetection:
 
                                 #the proceding cards belong to the deck
                                 else:
-                                    deck.append(Card.new(rank[cards[k].best_rank_match]+cards[k].best_suit_match))
+                                    board.append(Card.new(rank[cards[k].best_rank_match]+suit[cards[k].best_suit_match]))
 
-                                    if(len(deck)>2 and len(deck)<6):
+                                    if(len(board)>2 and len(board)<6):
                                         percentage=evaluator.evaluate(cardsArr[0],board)/6767
                                         class_rank=evaluator.get_rank_class(evaluator.evaluate(cardsArr[0],board))
                                         hand=evaluator.class_to_string(evaluator.get_rank_class(evaluator.evaluate(cardsArr[0],board)))
