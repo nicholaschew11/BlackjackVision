@@ -2,9 +2,8 @@ import os
 import time
 import numpy as np
 import cv2
-from treys import Evaluator
-from treys import Card
-from treys import Deck
+from test import Test
+
 
 from src.Video import Video
 import src.Cards as Cards
