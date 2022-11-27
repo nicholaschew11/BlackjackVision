@@ -59,12 +59,6 @@ class CardDetection:
                 # Initialize a new "cards" list to assign the card objects.
                 # k indexes the newly made array of cards.
                 cards = []
-                #twin array to hold cards in different format
-                cardsArr=[[]]
-                #array to hold the cards on the board
-                board=[]
-                #probability evaluator
-                evaluator=Evaluator()
 
                 k = 0
 
@@ -88,24 +82,15 @@ class CardDetection:
                                 self.arr.append(cards[k].best_rank_match, "of", cards[k].best_suit_match)
                                 
                                 #dictionary to store suits and rank keys + values
-                                rank={'Ace':'A','Two':'2','Three':'3','Four':'4','Five':'5','Six':'6','Seven':'7','Eight':'8','Nine':'9','Ten':'T','Jack':'J','Queen':'Q','King':'K'}
+                                rank={'Ace':['A',[1,11]],'Two':['2',[2]],'Three':['3',[3]],'Four':['4',[4]],'Five':['5',[5]],'Six':['6',[6]],'Seven':['7',[7]],'Eight':['8',[8]],'Nine':['9',[9]],'Ten':['T',[10]],'Jack':['J',[10]],'Queen':['Q',[10]],'King':['K',[10]]}
                                 suit={'Spades':'s','Diamonds':'d','Clubs':'c','Hearts':'h'}
 
-                                #the first two cards belong to the hand
-                                if len(cardsArr[0]<=2):
-                                    cardsArr[0].append(Card.new(rank[cards[k].best_rank_match]+cards[k].best_suit_match))
-
-                                #the proceding cards belong to the deck
-                                else:
-                                    board.append(Card.new(rank[cards[k].best_rank_match]+suit[cards[k].best_suit_match]))
-
-                                    if(len(board)>2 and len(board)<6):
-                                        percentage=evaluator.evaluate(cardsArr[0],board)/6767
-                                        class_rank=evaluator.get_rank_class(evaluator.evaluate(cardsArr[0],board))
-                                        hand=evaluator.class_to_string(evaluator.get_rank_class(evaluator.evaluate(cardsArr[0],board)))
-                        
-                       
-                        
+                                cardiB=[]
+                                for card in self.arr:
+                                    cardiB.append((rank[card.best_rank_match][0]+suit[card.best_suit_match],rank[card.best_rank_match][1],rank[card.best_rank_match][0]))
+                                
+                                result = Test("Basic Strategy Section 4", cardiB)
+                                move = result[len(self.arr)-2]                    
                         
                         # Draw center point and match result on the image.
                         image = Cards.draw_results(image, cards[k])
