@@ -134,8 +134,6 @@ class CardDetection:
 
                                 cardSuit=cards[k].best_suit_match
                                 cardiB.append((rank[cards[k].best_rank_match][0]+cardSuit[0].lower(),rank[cards[k].best_rank_match][1],rank[cards[k].best_rank_match][0]))
-                                for i in cardiB:
-                                    print("card: "+i[0]+" value: "+str(i[1][0])+" rank: "+i[2])
                                 try:
                                     if len(cardiB)>1:
                                         result = Test("Basic Strategy Section 4", cardiB)
