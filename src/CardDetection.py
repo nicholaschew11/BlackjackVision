@@ -2,8 +2,8 @@ import os
 import time
 import numpy as np
 import cv2
-from .test import Test
 
+from .blackjackk import blackjack
 
 from src.Video import Video
 import src.Cards as Cards
@@ -49,17 +49,26 @@ def renderGame(window):
   font = pygame.font.SysFont('comicsans',60, True)
   font1 = pygame.font.SysFont('comicsans',40, True)
 
+def black(strategy_name, cards):
+    strategy_name = strategy_name
+    print("Player strategy:", strategy_name)
+    this_table = blackjack.Table(4, 0.75)
+    this_table.shoe.cards=[("2d",[0],"2")]
+    for card in cards:
+        this_table.shoe.cards.append(card)
+    new_deck = blackjack.Deck()
+    this_table.shoe.cards = this_table.shoe.cards + new_deck.cards
+    return this_table.play_one_round(strategy_name)    # Play a game.
 
 
-  for i in range(len(rHand)):
-    window.blit(pygame.image.load(rHand[i]), (50+(175*i), 400))
-
-  text = font.render("BlackjackVision", True, (255,255,255))
-  window.blit(text, (300, 0))
-  window.blit(pygame.image.load("images/rich.png"),(670,10))
-  window.blit(pygame.image.load("images/nerd.png"),(760,10))
-  text1 = font1.render(str("Optimal Next Play:"+prediction), True, (255,255,255))
-  window.blit(text1, (40, 200))
+for i in range(len(rHand)):
+  window.blit(pygame.image.load(rHand[i]), (50+(175*i), 400))
+text = font.render("BlackjackVision", True, (255,255,255))
+window.blit(text, (300, 0))
+window.blit(pygame.image.load("images/rich.png"),(670,10))
+window.blit(pygame.image.load("images/nerd.png"),(760,10))
+text1 = font1.render(str("Optimal Next Play:"+prediction), True, (255,255,255))
+window.blit(text1, (40, 200))
 class CardDetection:
     def __init__(self) -> None:
         self.arr = []
@@ -130,14 +139,14 @@ class CardDetection:
                             if cardName not in self.arr:
                                 self.arr.append(cardName)
                                 #dictionary to store suits and rank keys + values
-                                print("rank: "+cards[k].best_rank_match+ "suit: "+cards[k].best_suit_match+"\n")
+                                print("rank: "+rank[cards[k].best_rank_match]+ "suit: "+cards[k].best_suit_match.lower()+"\n")
 
                                 cardSuit=cards[k].best_suit_match
                                 cardiB.append((rank[cards[k].best_rank_match][0]+cardSuit[0].lower(),rank[cards[k].best_rank_match][1],rank[cards[k].best_rank_match][0]))
                                 print(len(cardiB))
                                 try:
                                     if len(cardiB)>2:
-                                        result = Test("Basic Strategy Section 4", cardiB)
+                                        result = black("Basic Strategy Section 4", cardiB)
                                         print(result)
                                         renderGame(window)
                                         pygame.display.update()
