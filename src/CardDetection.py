@@ -136,7 +136,7 @@ class CardDetection:
                                 count = 0
                                 cardiB=[]
                                 for card in self.arr:
-                                    cardiB.append((rank[cards[k].best_rank_match][0]+suit[cards[k].best_suit_match],rank[cards[k].best_rank_match][1],rank[cards[k].best_rank_match][0]))
+                                    cardiB.append((rank[card[k].best_rank_match][0]+suit[card[k].best_suit_match],rank[card[k].best_rank_match][1],rank[card[k].best_rank_match][0]))
                                 if len(cardiB)>1:
                                     result = Test("Basic Strategy Section 4", cardiB)
                                     move = result[len(self.arr)-2] 
