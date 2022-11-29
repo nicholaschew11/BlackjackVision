@@ -88,9 +88,9 @@ class CardDetection:
                                 cardiB=[]
                                 for card in self.arr:
                                     cardiB.append((rank[card.best_rank_match][0]+suit[card.best_suit_match],rank[card.best_rank_match][1],rank[card.best_rank_match][0]))
-                                
-                                result = Test("Basic Strategy Section 4", cardiB)
-                                move = result[len(self.arr)-2]                    
+                                if len(cardiB)>1:
+                                    result = Test("Basic Strategy Section 4", cardiB)
+                                    move = result[len(self.arr)-2]              
                         
                         # Draw center point and match result on the image.
                         image = Cards.draw_results(image, cards[k])
