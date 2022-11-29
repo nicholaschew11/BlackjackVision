@@ -138,6 +138,7 @@ class CardDetection:
                                     if len(cardiB)>1:
                                         result = Test("Basic Strategy Section 4", cardiB)
                                         move = result[len(self.arr)-2] 
+                                        print(move)
                                         renderGame(window)
                                         pygame.display.update()
                                         print(count)
