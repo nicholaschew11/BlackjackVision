@@ -2,7 +2,7 @@ import os
 import time
 import numpy as np
 import cv2
-from test import Test
+from .test import Test
 
 
 from src.Video import Video
