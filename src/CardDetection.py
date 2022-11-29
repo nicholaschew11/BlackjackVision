@@ -65,7 +65,7 @@ class CardDetection:
         self.arr = []
 
     def run(self):
-        
+        cardiB=[]
         frame_rate_calc = 1
         freq = cv2.getTickFrequency()
         font = cv2.FONT_HERSHEY_SIMPLEX
@@ -108,7 +108,7 @@ class CardDetection:
                 # k indexes the newly made array of cards.
                 cards = []
                 k = 0
-                cardiB=[]
+                
                 rank={'Ace':['A',[1,11]],'Two':['2',[2]],'Three':['3',[3]],'Four':['4',[4]],'Five':['5',[5]],'Six':['6',[6]],'Seven':['7',[7]],'Eight':['8',[8]],'Nine':['9',[9]],'Ten':['T',[10]],'Jack':['J',[10]],'Queen':['Q',[10]],'King':['K',[10]],'Unknown':None}
                 # For each contour detected:
                 for i in range(len(cnts_sort)):
