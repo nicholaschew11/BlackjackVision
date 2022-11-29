@@ -14,3 +14,21 @@ import traceback
 from waveshare_OLED import OLED_1in5_rgb
 from PIL import Image,ImageDraw,ImageFont
 logging.basicConfig(level=logging.DEBUG)
+
+try:
+    disp = OLED_1in5_rgb.OLED_1in5_rgb()
+
+    logging.info("\r 1.5inch rgb OLED ")
+    # Initialize library.
+    disp.Init()
+    # Clear display.
+    logging.info("clear display")
+    disp.clear()
+
+except IOError as e:
+    logging.info(e)
+    
+except KeyboardInterrupt:    
+    logging.info("ctrl + c:")
+    OLED_1in5_rgb.config.module_exit()
+    exit()
