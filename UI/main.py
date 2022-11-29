@@ -5,7 +5,7 @@ import random
 pygame.init()
 bounds = (1024, 768)
 window = pygame.display.set_mode(bounds)
-pygame.display.set_caption("Poker Vision")
+pygame.display.set_caption("BlackjackVision")
 
 
 
@@ -40,7 +40,7 @@ def renderGame(window):
   for i in range(len(rHand)):
     window.blit(pygame.image.load(rHand[i]), (50+(175*i), 400))
 
-  text = font.render("Poker Vision", True, (255,255,255))
+  text = font.render("BlackjackVision", True, (255,255,255))
   window.blit(text, (300, 0))
   window.blit(pygame.image.load("images/rich.png"),(670,10))
   window.blit(pygame.image.load("images/nerd.png"),(760,10))
