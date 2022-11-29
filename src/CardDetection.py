@@ -131,16 +131,16 @@ class CardDetection:
                             if cardName not in self.arr:
                                 self.arr.append(cardName)
                                 #dictionary to store suits and rank keys + values
-                                cardiB.append((rank[cards[k].best_rank_match][0]+suit[cards[k].best_suit_match],rank[cards[k].best_rank_match][1],rank[cards[k].best_rank_match][0]))
-                                if len(cardiB)>1:
-                                    result = Test("Basic Strategy Section 4", cardiB)
-                                    move = result[len(self.arr)-2] 
-                                    renderGame(window)
-                                    pygame.display.update()
-                                    print(count)
-                                    if(count%350==0):
-                                        prediction = random.choice(currHand)
-                                        addtohand(random.choice(cardtype), random.randrange(1, 13, 1))                   
+                                # cardiB.append((rank[cards[k].best_rank_match][0]+suit[cards[k].best_suit_match],rank[cards[k].best_rank_match][1],rank[cards[k].best_rank_match][0]))
+                                # if len(cardiB)>1:
+                                #     result = Test("Basic Strategy Section 4", cardiB)
+                                #     move = result[len(self.arr)-2] 
+                                #     renderGame(window)
+                                #     pygame.display.update()
+                                #     print(count)
+                                #     if(count%350==0):
+                                #         prediction = random.choice(currHand)
+                                #         addtohand(random.choice(cardtype), random.randrange(1, 13, 1))                   
                         
                         # Draw center point and match result on the image.
                         image = Cards.draw_results(image, cards[k])
