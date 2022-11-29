@@ -109,8 +109,8 @@ class CardDetection:
                 cards = []
                 k = 0
                 cardiB=[]
-                rank={'Ace':['A',[1,11]],'Two':['2',[2]],'Three':['3',[3]],'Four':['4',[4]],'Five':['5',[5]],'Six':['6',[6]],'Seven':['7',[7]],'Eight':['8',[8]],'Nine':['9',[9]],'Ten':['T',[10]],'Jack':['J',[10]],'Queen':['Q',[10]],'King':['K',[10]]}
-                suit={'Spades':'s','Diamonds':'d','Clubs':'c','Hearts':'h'}
+                rank={'Ace':['A',[1,11]],'Two':['2',[2]],'Three':['3',[3]],'Four':['4',[4]],'Five':['5',[5]],'Six':['6',[6]],'Seven':['7',[7]],'Eight':['8',[8]],'Nine':['9',[9]],'Ten':['T',[10]],'Jack':['J',[10]],'Queen':['Q',[10]],'King':['K',[10]],'Unknown':None}
+                suit={'Spades':'s','Diamonds':'d','Clubs':'c','Hearts':'h','Unknown':None}
                 # For each contour detected:
                 for i in range(len(cnts_sort)):
                     if (cnt_is_card[i] == 1):
