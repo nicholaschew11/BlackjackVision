@@ -22,8 +22,8 @@ pygame.display.set_caption("BlackjackVision")
 
 
 
-cardBack = pygame.image.load('images/BACK.png')
-cardBack = pygame.transform.scale(cardBack, (int(238*0.8), int(332*0.8)))
+# cardBack = pygame.image.load('images/BACK.png')
+# cardBack = pygame.transform.scale(cardBack, (int(238*0.8), int(332*0.8)))
 
 playhand = []
 
