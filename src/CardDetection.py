@@ -135,7 +135,7 @@ class CardDetection:
                                 cardSuit=cards[k].best_suit_match
                                 cardiB.append((rank[cards[k].best_rank_match][0]+cardSuit[0].lower(),rank[cards[k].best_rank_match][1],rank[cards[k].best_rank_match][0]))
                                 try:
-                                    if len(cardiB)>1:
+                                    if len(cardiB)>2:
                                         result = Test("Basic Strategy Section 4", cardiB)
                                         print(result)
                                         renderGame(window)
