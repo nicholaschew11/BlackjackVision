@@ -45,6 +45,22 @@ try:
     disp.ShowImage(disp.getbuffer(image1))
     time.sleep(3)
 
+
+    logging.info ("***draw rectangle")
+    image1 = Image.new("RGB", (disp.width, disp.height), "BLACK")
+    draw = ImageDraw.Draw(image1)
+    draw.line([(0,8), (127,8)],   fill = "RED",    width = 16)
+    draw.line([(0,24),(127,24)],  fill = "YELLOW", width = 16)
+    draw.line([(0,40),(127,40)],  fill = "GREEN",  width = 16)
+    draw.line([(0,56),(127,56)],  fill = "CYAN",   width = 16)
+    draw.line([(0,72),(127,72)],  fill = "BLUE",   width = 16)
+    draw.line([(0,88),(127,88)],  fill = "MAGENTA",width = 16)
+    draw.line([(0,104),(127,104)],fill = "BLACK",  width = 16)
+    draw.line([(0,120),(127,120)],fill = "WHITE",  width = 16)
+    disp.ShowImage(disp.getbuffer(image1))
+    time.sleep(3)
+
+
     disp.clear()
 
 except IOError as e:
