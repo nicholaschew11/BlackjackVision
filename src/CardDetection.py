@@ -2,16 +2,64 @@ import os
 import time
 import numpy as np
 import cv2
-from test import Test
+from .test import Test
 
 
 from src.Video import Video
 import src.Cards as Cards
 
+import pygame
+import random
+
 FRAME_WIDTH = 1280
 FRAME_HEIGHT = 720
 FPS = 20
 
+pygame.init()
+bounds = (1024, 768)
+window = pygame.display.set_mode(bounds)
+pygame.display.set_caption("BlackjackVision")
+
+
+
+cardBack = pygame.image.load('images/BACK.png')
+cardBack = pygame.transform.scale(cardBack, (int(238*0.8), int(332*0.8)))
+
+playhand = []
+
+cardtype = ["CLUB", "DIAMOND", "HEART", "SPADE"]
+
+for t in cardtype:
+  for i in range(1, 14):
+    playhand.append(str("images/"+t+"-"+str(i)+".svg"))
+
+rHand = []
+currHand =[]
+
+
+def addtohand(type, value):
+  currHand.append(str(type+" - "+str(value)))
+  rHand.append(str("images/"+type+"-"+str(value)+".svg"))
+
+addtohand("CLUB", 5)
+prediction=""
+
+def renderGame(window):
+  window.fill((94,174,235))
+  font = pygame.font.SysFont('comicsans',60, True)
+  font1 = pygame.font.SysFont('comicsans',40, True)
+
+
+
+  for i in range(len(rHand)):
+    window.blit(pygame.image.load(rHand[i]), (50+(175*i), 400))
+
+  text = font.render("BlackjackVision", True, (255,255,255))
+  window.blit(text, (300, 0))
+  window.blit(pygame.image.load("images/rich.png"),(670,10))
+  window.blit(pygame.image.load("images/nerd.png"),(760,10))
+  text1 = font1.render(str("Optimal Next Play:"+prediction), True, (255,255,255))
+  window.blit(text1, (40, 200))
 class CardDetection:
     def __init__(self) -> None:
         self.arr = []
@@ -84,13 +132,19 @@ class CardDetection:
                                 #dictionary to store suits and rank keys + values
                                 rank={'Ace':['A',[1,11]],'Two':['2',[2]],'Three':['3',[3]],'Four':['4',[4]],'Five':['5',[5]],'Six':['6',[6]],'Seven':['7',[7]],'Eight':['8',[8]],'Nine':['9',[9]],'Ten':['T',[10]],'Jack':['J',[10]],'Queen':['Q',[10]],'King':['K',[10]]}
                                 suit={'Spades':'s','Diamonds':'d','Clubs':'c','Hearts':'h'}
-
+                                count = 0
                                 cardiB=[]
                                 for card in self.arr:
                                     cardiB.append((rank[card.best_rank_match][0]+suit[card.best_suit_match],rank[card.best_rank_match][1],rank[card.best_rank_match][0]))
                                 if len(cardiB)>1:
                                     result = Test("Basic Strategy Section 4", cardiB)
-                                    move = result[len(self.arr)-2]                    
+                                    move = result[len(self.arr)-2] 
+                                    renderGame(window)
+                                    pygame.display.update()
+                                    print(count)
+                                    if(count%350==0):
+                                        prediction = random.choice(currHand)
+                                        addtohand(random.choice(cardtype), random.randrange(1, 13, 1))                   
                         
                         # Draw center point and match result on the image.
                         image = Cards.draw_results(image, cards[k])
@@ -103,6 +157,7 @@ class CardDetection:
                     for i in range(len(cards)):
                         temp_cnts.append(cards[i].contour)
                     cv2.drawContours(image,temp_cnts, -1, (255,0,0), 2)
+
                 
                 
             # Draw framerate in the corner of the image. Framerate is calculated at the end of the main loop,
