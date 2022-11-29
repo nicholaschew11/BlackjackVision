@@ -126,8 +126,8 @@ class CardDetection:
 
 
                         if cards[k].best_rank_match != "Unknown" and cards[k].best_suit_match != "Unknown":
-                            if self.arr.index(cards[k].best_rank_match, "of", cards[k].best_suit_match) != - 1:
-                                self.arr.append(cards[k].best_rank_match, "of", cards[k].best_suit_match)
+                            if self.arr.index(cards[k].best_rank_match+ " of "+ cards[k].best_suit_match) != - 1:
+                                self.arr.append(cards[k].best_rank_match+ " of "+ cards[k].best_suit_match)
                                 
                                 #dictionary to store suits and rank keys + values
                                 rank={'Ace':['A',[1,11]],'Two':['2',[2]],'Three':['3',[3]],'Four':['4',[4]],'Five':['5',[5]],'Six':['6',[6]],'Seven':['7',[7]],'Eight':['8',[8]],'Nine':['9',[9]],'Ten':['T',[10]],'Jack':['J',[10]],'Queen':['Q',[10]],'King':['K',[10]]}
