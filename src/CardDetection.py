@@ -110,7 +110,6 @@ class CardDetection:
                 k = 0
                 cardiB=[]
                 rank={'Ace':['A',[1,11]],'Two':['2',[2]],'Three':['3',[3]],'Four':['4',[4]],'Five':['5',[5]],'Six':['6',[6]],'Seven':['7',[7]],'Eight':['8',[8]],'Nine':['9',[9]],'Ten':['T',[10]],'Jack':['J',[10]],'Queen':['Q',[10]],'King':['K',[10]],'Unknown':None}
-                suit={'S':'s','D':'d','C':'c','H':'h','Unknown':None}
                 # For each contour detected:
                 for i in range(len(cnts_sort)):
                     if (cnt_is_card[i] == 1):
@@ -135,15 +134,20 @@ class CardDetection:
 
                                 cardSuit=cards[k].best_suit_match
                                 cardiB.append((rank[cards[k].best_rank_match][0]+cardSuit[0].lower(),rank[cards[k].best_rank_match][1],rank[cards[k].best_rank_match][0]))
-                                if len(cardiB)>1:
-                                    result = Test("Basic Strategy Section 4", cardiB)
-                                    move = result[len(self.arr)-2] 
-                                    renderGame(window)
-                                    pygame.display.update()
-                                    print(count)
-                                    if(count%350==0):
-                                        prediction = random.choice(currHand)
-                                        addtohand(random.choice(cardtype), random.randrange(1, 13, 1)) 
+                                for i in cardiB:
+                                    print("card: "+i[0]+" value: "+i[1]+" rank: "+i[2])
+                                try:
+                                    if len(cardiB)>1:
+                                        result = Test("Basic Strategy Section 4", cardiB)
+                                        move = result[len(self.arr)-2] 
+                                        renderGame(window)
+                                        pygame.display.update()
+                                        print(count)
+                                        if(count%350==0):
+                                            prediction = random.choice(currHand)
+                                            addtohand(random.choice(cardtype), random.randrange(1, 13, 1)) 
+                                except:
+                                    print('asd')
             
                         
                         # Draw center point and match result on the image.
