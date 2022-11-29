@@ -85,7 +85,7 @@ class CardDetection:
         # and processes them to find and identify playing cards.
 
         cam_quit = 0 # Loop control variable
-
+        count=0
         # Begin capturing frames
         while cam_quit == 0:
 
@@ -109,7 +109,9 @@ class CardDetection:
                 cards = []
 
                 k = 0
-
+                cardiB=[]
+                rank={'Ace':['A',[1,11]],'Two':['2',[2]],'Three':['3',[3]],'Four':['4',[4]],'Five':['5',[5]],'Six':['6',[6]],'Seven':['7',[7]],'Eight':['8',[8]],'Nine':['9',[9]],'Ten':['T',[10]],'Jack':['J',[10]],'Queen':['Q',[10]],'King':['K',[10]]}
+                suit={'Spades':'s','Diamonds':'d','Clubs':'c','Hearts':'h'}
                 # For each contour detected:
                 for i in range(len(cnts_sort)):
                     if (cnt_is_card[i] == 1):
@@ -129,14 +131,8 @@ class CardDetection:
                             cardName = cards[k].best_rank_match+ " of "+ cards[k].best_suit_match
                             if cardName not in self.arr:
                                 self.arr.append(cardName)
-                                
                                 #dictionary to store suits and rank keys + values
-                                rank={'Ace':['A',[1,11]],'Two':['2',[2]],'Three':['3',[3]],'Four':['4',[4]],'Five':['5',[5]],'Six':['6',[6]],'Seven':['7',[7]],'Eight':['8',[8]],'Nine':['9',[9]],'Ten':['T',[10]],'Jack':['J',[10]],'Queen':['Q',[10]],'King':['K',[10]]}
-                                suit={'Spades':'s','Diamonds':'d','Clubs':'c','Hearts':'h'}
-                                count = 0
-                                cardiB=[]
-                                for card in self.arr:
-                                    cardiB.append((rank[cards[k].best_rank_match][0]+suit[cards[k].best_suit_match],rank[cards[k].best_rank_match][1],rank[cards[k].best_rank_match][0]))
+                                cardiB.append((rank[cards[k].best_rank_match][0]+suit[cards[k].best_suit_match],rank[cards[k].best_rank_match][1],rank[cards[k].best_rank_match][0]))
                                 if len(cardiB)>1:
                                     result = Test("Basic Strategy Section 4", cardiB)
                                     move = result[len(self.arr)-2] 
