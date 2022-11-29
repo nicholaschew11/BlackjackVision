@@ -60,6 +60,13 @@ try:
     disp.ShowImage(disp.getbuffer(image1))
     time.sleep(3)
 
+    logging.info ("***draw image")
+    Himage2 = Image.new('RGB', (disp.width, disp.height), 0)  # 0: clear the frame
+    bmp = Image.open(os.path.join(picdir, '1in5_rgb.bmp'))
+    Himage2.paste(bmp, (0,0))
+    Himage2=Himage2.rotate(0) 	
+    disp.ShowImage(disp.getbuffer(Himage2)) 
+    time.sleep(3)
 
     disp.clear()
 
