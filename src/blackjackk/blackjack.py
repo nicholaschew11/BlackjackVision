@@ -58,7 +58,7 @@ class Card_Counting:
 
         count_map = {"2": 1, "3": 1, "4": 1, "5": 1, "6": 1, "7": 0, "8": 0, "9": 0, "10": -1, "A": -1}
 
-        self.running_count += count_map.get(card_value)     # Adjust the running count based on value of this card.
+        # self.running_count += count_map.get(card_value)     # Adjust the running count based on value of this card.
 
         decks_in_shoe = shoe_size / 52
 
