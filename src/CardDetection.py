@@ -131,6 +131,8 @@ class CardDetection:
                             if cardName not in self.arr:
                                 self.arr.append(cardName)
                                 #dictionary to store suits and rank keys + values
+                                print("rank: "+cards[k].best_rank_match+ "suit: "+cards[k].best_suit_match+"\n")
+                                print("value of card: " + rank[cards[k].best_rank_match][1])
                                 cardiB.append((rank[cards[k].best_rank_match][0]+suit[cards[k].best_suit_match],rank[cards[k].best_rank_match][1],rank[cards[k].best_rank_match][0]))
                                 if len(cardiB)>1:
                                     result = Test("Basic Strategy Section 4", cardiB)
