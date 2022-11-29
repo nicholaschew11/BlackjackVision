@@ -1,4 +1,4 @@
-from blackjack import blackjack
+from blackjackk import blackjack
 
 class Test:
     def __init__(self, strategy_name, cards):
