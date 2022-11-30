@@ -48,20 +48,24 @@ addtohand("CLUB", 5)
 print(rHand[0])
 
 def renderGame(window,prediction):
-   window.fill((94,174,235))
-   font = pygame.font.SysFont('comicsans',60, True)
-   font1 = pygame.font.SysFont('comicsans',40, True)
-   window.blit(pygame.image.load("src/images/rich.png"),(670,10))
-   
+  window.fill((94,174,235))
+  font = pygame.font.SysFont('comicsans',60, True)
+  font1 = pygame.font.SysFont('comicsans',40, True)
 
-   for i in range(len(rHand)):
-       window.blit(pygame.image.load(rHand[i]), (50+(175*i), 400))
-   text = font.render("BlackjackVision", True, (255,255,255))
-   window.blit(text, (300, 0))
-   window.blit(pygame.image.load("src/images/rich.png"),(670,10))
-   window.blit(pygame.image.load("src/images/nerd.png"),(760,10))
-   text1 = font1.render(str("Optimal Next Play:"+prediction), True, (255,255,255))
-   window.blit(text1, (40, 200))
+
+
+  for i in range(len(rHand)):
+    window.blit(pygame.image.load(rHand[i]), (50+(175*i), 400))
+
+  text = font.render("BlackjackVision", True, (255,255,255))
+  window.blit(text, (300, 0))
+  window.blit(pygame.image.load("images/rich.png"),(670,10))
+  window.blit(pygame.image.load("images/nerd.png"),(760,10))
+  if prediction == "Blackjack!":
+    text1 = font1.render(str(prediction), True, (255,255,255))
+  else:
+    text1 = font1.render(str("Optimal Next Play:"+prediction), True, (255,255,255))
+  window.blit(text1, (40, 200))
 renderGame(window,"")
 pygame.display.update()
 
