@@ -150,8 +150,10 @@ class CardDetection:
                                 print(len(cardiB))
 
                                 if len(cardiB)>2:
+                                    prediction=""
                                     result = black("Basic Strategy Section 4", cardiB)
-                                    prediction=result[-1]
+                                    for i in result:
+                                        prediction+=" "+i
                                     renderGame(window,prediction)
                                     displayMessage(prediction)
                                     pygame.display.update()
