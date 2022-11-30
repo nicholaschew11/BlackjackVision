@@ -42,9 +42,8 @@ def addtohand(type, value):
   rHand.append(str("images/"+type+"-"+str(value)+".svg"))
 
 addtohand("CLUB", 5)
-prediction=""
 
-def renderGame(window):
+def renderGame(window,prediction):
   window.fill((94,174,235))
   font = pygame.font.SysFont('comicsans',60, True)
   font1 = pygame.font.SysFont('comicsans',40, True)
@@ -56,6 +55,7 @@ def renderGame(window):
     window.blit(pygame.image.load("images/nerd.png"),(760,10))
     text1 = font1.render(str("Optimal Next Play:"+prediction), True, (255,255,255))
     window.blit(text1, (40, 200))
+renderGame(window,"")
 
 def black(strategy_name, cards):
     strategy_name = strategy_name
@@ -143,8 +143,9 @@ class CardDetection:
                                 try:
                                     if len(cardiB)>2:
                                         result = black("Basic Strategy Section 4", cardiB)
-                                        print(result)
-                                        renderGame(window)
+                                        print(result[len(cardiB)-3])
+                                        prediction=result[len(cardiB)-3]
+                                        renderGame(window,prediction)
                                         pygame.display.update()
                                         print(count)
                                         if(count%350==0):
