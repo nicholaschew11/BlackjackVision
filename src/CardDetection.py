@@ -39,7 +39,7 @@ currHand =[]
 
 def addtohand(type, value):
   currHand.append(str(type+" - "+str(value)))
-  rHand.append(str("images/"+type+"-"+str(value)+".svg"))
+  rHand.append(str("src/images/"+type+"-"+str(value)+".svg"))
 
 addtohand("CLUB", 5)
 
@@ -51,8 +51,8 @@ def renderGame(window,prediction):
     window.blit(pygame.image.load(rHand[i]), (50+(175*i), 400))
     text = font.render("BlackjackVision", True, (255,255,255))
     window.blit(text, (300, 0))
-    window.blit(pygame.image.load("images/rich.png"),(670,10))
-    window.blit(pygame.image.load("images/nerd.png"),(760,10))
+    window.blit(pygame.image.load("src/images/rich.png"),(670,10))
+    window.blit(pygame.image.load("src/images/nerd.png"),(760,10))
     text1 = font1.render(str("Optimal Next Play:"+prediction), True, (255,255,255))
     window.blit(text1, (40, 200))
 renderGame(window,"")
