@@ -3,12 +3,14 @@
 
 import sys
 import os
+import cv2
 picdir = os.path.join(os.path.dirname(os.path.dirname(os.path.realpath(__file__))), 'pic')
 import logging    
 import time
 import traceback
 from src.OLED.waveshare_OLED import OLED_1in5_rgb
 from PIL import Image,ImageDraw,ImageFont
+font_path = os.path.join(cv2.__path__[0],'qt','fonts','DejaVuSans.ttf')
 logging.basicConfig(level=logging.DEBUG)
 
 def displayMessage(message):
@@ -25,7 +27,8 @@ def displayMessage(message):
         # Create blank image for drawing.
         image1 = Image.new('RGB', (disp.width, disp.height), 0)
         draw = ImageDraw.Draw(image1)
-        font = ImageFont.load_default()
+        # font = ImageFont.load_default()
+        font = ImageFont.truetype(font_path, size=20)
         logging.info ("***draw line")
         draw.line([(0,0),(127,0)], fill = "RED")
         draw.line([(0,0),(0,127)], fill = "RED")

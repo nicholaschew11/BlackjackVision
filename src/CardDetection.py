@@ -11,6 +11,8 @@ import src.Cards as Cards
 import pygame
 import random
 
+from src.OLED.oled import displayMessage
+
 FRAME_WIDTH = 1280
 FRAME_HEIGHT = 720
 FPS = 20
@@ -40,7 +42,7 @@ currHand =[]
 
 def addtohand(type, value):
   currHand.append(str(type+" - "+str(value)))
-  rHand.append(str("src/images/"+type+"-"+str(value)+".svg"))
+  rHand.append(str("src/images/"+type+"-"+str(value)+".png"))
 
 addtohand("CLUB", 5)
 print(rHand[0])
@@ -52,8 +54,8 @@ def renderGame(window,prediction):
    window.blit(pygame.image.load("src/images/rich.png"),(670,10))
    
 
-   #for i in range(len(rHand)):
-       #window.blit(pygame.image.load(rHand[i]), (50+(175*i), 400))
+   for i in range(len(rHand)):
+       window.blit(pygame.image.load(rHand[i]), (50+(175*i), 400))
    text = font.render("BlackjackVision", True, (255,255,255))
    window.blit(text, (300, 0))
    window.blit(pygame.image.load("src/images/rich.png"),(670,10))
@@ -151,6 +153,7 @@ class CardDetection:
                                     result = black("Basic Strategy Section 4", cardiB)
                                     prediction=result[-1]
                                     renderGame(window,prediction)
+                                    displayMessage(prediction)
                                     pygame.display.update()
                                     print(count)
                                     if(count%350==0):
