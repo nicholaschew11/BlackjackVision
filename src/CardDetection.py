@@ -5,7 +5,7 @@ import cv2
 import pygame
 import random
 
-import blackjack
+from src.Blackjack import Blackjack
 from src.OLED.oled import displayMessage
 from src.Video import Video
 import src.Cards as Cards
@@ -69,11 +69,11 @@ pygame.display.update()
 def black(strategy_name, cards):
     strategy_name = strategy_name
     print("Player strategy:", strategy_name)
-    this_table = blackjack.Table(4, 0.75)
+    this_table = Blackjack.Table(4, 0.75)
     this_table.shoe.cards=[("2d",[8],"2")]
     for card in cards:
         this_table.shoe.cards.append(card)
-    new_deck = blackjack.Deck()
+    new_deck = Blackjack.Deck()
     this_table.shoe.cards = this_table.shoe.cards + new_deck.cards
     return this_table.play_one_round(strategy_name)    # Play a game.
 class CardDetection:
