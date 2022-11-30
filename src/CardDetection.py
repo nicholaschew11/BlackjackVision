@@ -11,6 +11,8 @@ import src.Cards as Cards
 import pygame
 import random
 
+from src.OLED.oled import displayMessage
+
 FRAME_WIDTH = 1280
 FRAME_HEIGHT = 720
 FPS = 20
@@ -151,6 +153,7 @@ class CardDetection:
                                     result = black("Basic Strategy Section 4", cardiB)
                                     prediction=result[-1]
                                     renderGame(window,prediction)
+                                    displayMessage(prediction)
                                     pygame.display.update()
                                     print(count)
                                     if(count%350==0):
