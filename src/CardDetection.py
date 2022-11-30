@@ -39,7 +39,7 @@ currHand =[]
 
 def addtohand(type, value):
   currHand.append(str(type+" - "+str(value)))
-  rHand.append(str("/images/"+type+"-"+str(value)+".svg"))
+  rHand.append(str("src/images/"+type+"-"+str(value)+".svg"))
 
 addtohand("CLUB", 5)
 print(rHand[0])
@@ -48,6 +48,8 @@ def renderGame(window,prediction):
    window.fill((94,174,235))
    font = pygame.font.SysFont('comicsans',60, True)
    font1 = pygame.font.SysFont('comicsans',40, True)
+   window.blit(pygame.image.load("src/images/rich.png"),(670,10))
+   
 
    for i in range(len(rHand)):
        window.blit(pygame.image.load(rHand[i]), (50+(175*i), 400))
