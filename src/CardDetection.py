@@ -52,7 +52,7 @@ def renderGame(window,prediction):
    
 
    for i in range(len(rHand)):
-       window.blit(pygame.image.load(rHand[i]), (50+(175*i), 400))
+       #window.blit(pygame.image.load(rHand[i]), (50+(175*i), 400))
    text = font.render("BlackjackVision", True, (255,255,255))
    window.blit(text, (300, 0))
    window.blit(pygame.image.load("src/images/rich.png"),(670,10))
