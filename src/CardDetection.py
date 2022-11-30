@@ -5,7 +5,7 @@ import cv2
 import pygame
 import random
 
-import blackjack
+from .blackjackk import blackjack
 from src.OLED.oled import displayMessage
 from src.Video import Video
 import src.Cards as Cards
@@ -56,8 +56,8 @@ def renderGame(window,prediction):
 
   text = font.render("BlackjackVision", True, (255,255,255))
   window.blit(text, (300, 0))
-  window.blit(pygame.image.load("images/rich.png"),(670,10))
-  window.blit(pygame.image.load("images/nerd.png"),(760,10))
+  window.blit(pygame.image.load("src/images/rich.png"),(670,10))
+  window.blit(pygame.image.load("src/images/nerd.png"),(760,10))
   if prediction == "Blackjack!":
     text1 = font1.render(str(prediction), True, (255,255,255))
   else:
