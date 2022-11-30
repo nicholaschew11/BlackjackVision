@@ -28,7 +28,7 @@ def displayMessage(message):
         image1 = Image.new('RGB', (disp.width, disp.height), 0)
         draw = ImageDraw.Draw(image1)
         # font = ImageFont.load_default()
-        font = ImageFont.truetype(font_path, size=100)
+        font = ImageFont.truetype(font_path, size=20)
         logging.info ("***draw line")
         draw.line([(0,0),(127,0)], fill = "RED")
         draw.line([(0,0),(0,127)], fill = "RED")
