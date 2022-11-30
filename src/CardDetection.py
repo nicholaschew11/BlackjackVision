@@ -42,6 +42,7 @@ def addtohand(type, value):
   rHand.append(str("src/images/"+type+"-"+str(value)+".svg"))
 
 addtohand("CLUB", 5)
+print(rHand[0])
 
 def renderGame(window,prediction):
    window.fill((94,174,235))
@@ -49,7 +50,6 @@ def renderGame(window,prediction):
    font1 = pygame.font.SysFont('comicsans',40, True)
 
    for i in range(len(rHand)):
-       print(rHand[i])
        window.blit(pygame.image.load(rHand[i]), (50+(175*i), 400))
    text = font.render("BlackjackVision", True, (255,255,255))
    window.blit(text, (300, 0))
