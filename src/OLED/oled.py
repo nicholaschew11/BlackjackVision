@@ -4,6 +4,9 @@
 import sys
 import os
 picdir = os.path.join(os.path.dirname(os.path.dirname(os.path.realpath(__file__))), 'pic')
+libdir = os.path.join(os.path.dirname(os.path.dirname(os.path.realpath(__file__))), 'lib')
+if os.path.exists(libdir):
+    sys.path.append(libdir)
 
 import logging    
 import time
@@ -34,14 +37,13 @@ try:
     draw.line([(0,127),(127,127)], fill = "RED")
     draw.line([(127,0),(127,127)], fill = "RED")
     logging.info ("***draw text")
-    draw.text((20,0), 'This ', font = font1, fill = "BLUE")
-    draw.text((20,24), u'Is ', font = font2, fill = "MAGENTA")
-    draw.text((20,64), 'Pretty ', font = font1, fill = "CYAN")
-    draw.text((20,92), u'Cool ', font = font2, fill = "GREEN")
+    draw.text((20,0), 'Waveshare ', font = font1, fill = "BLUE")
+    draw.text((20,24), u'微雪电子 ', font = font2, fill = "MAGENTA")
+    draw.text((20,64), 'Waveshare ', font = font1, fill = "CYAN")
+    draw.text((20,92), u'微雪电子 ', font = font2, fill = "GREEN")
     image1 = image1.rotate(0)
     disp.ShowImage(disp.getbuffer(image1))
     time.sleep(3)
-
 
     logging.info ("***draw rectangle")
     image1 = Image.new("RGB", (disp.width, disp.height), "BLACK")
@@ -63,7 +65,7 @@ try:
     Himage2.paste(bmp, (0,0))
     Himage2=Himage2.rotate(0) 	
     disp.ShowImage(disp.getbuffer(Himage2)) 
-    time.sleep(3)
+    time.sleep(3)    
 
     disp.clear()
 
