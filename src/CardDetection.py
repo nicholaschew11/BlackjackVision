@@ -49,7 +49,6 @@ def renderGame(window,prediction):
   font1 = pygame.font.SysFont('comicsans',40, True)
   for i in range(len(rHand)):
     window.blit(pygame.image.load(rHand[i]), (50+(175*i), 400))
-<<<<<<< HEAD
     text = font.render("BlackjackVision", True, (255,255,255))
     window.blit(text, (300, 0))
     window.blit(pygame.image.load("images/rich.png"),(670,10))
@@ -57,15 +56,6 @@ def renderGame(window,prediction):
     text1 = font1.render(str("Optimal Next Play:"+prediction), True, (255,255,255))
     window.blit(text1, (40, 200))
 renderGame(window,"")
-=======
-
-  text = font.render("Poker Vision", True, (255,255,255))
-  window.blit(text, (300, 0))
-  window.blit(pygame.image.load("images/rich.png"),(670,10))
-  window.blit(pygame.image.load("images/nerd.png"),(760,10))
-  text1 = font1.render(str("Optimal Next Play:"+prediction), True, (255,255,255))
-  window.blit(text1, (40, 200))
->>>>>>> 31d6e12c1d99cc8e62a2b4cf4a63ee0135cef400
 
 def black(strategy_name, cards):
     strategy_name = strategy_name
