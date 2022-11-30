@@ -60,6 +60,7 @@ def renderGame(window,prediction):
    text1 = font1.render(str("Optimal Next Play:"+prediction), True, (255,255,255))
    window.blit(text1, (40, 200))
 renderGame(window,"")
+pygame.display.update()
 
 def black(strategy_name, cards):
     strategy_name = strategy_name
