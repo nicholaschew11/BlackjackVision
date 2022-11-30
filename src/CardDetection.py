@@ -2,16 +2,13 @@ import os
 import time
 import numpy as np
 import cv2
-
-from .blackjackk import blackjack
-
-from src.Video import Video
-import src.Cards as Cards
-
 import pygame
 import random
 
+from .blackjackk import blackjack
 from src.OLED.oled import displayMessage
+from src.Video import Video
+import src.Cards as Cards
 
 FRAME_WIDTH = 1280
 FRAME_HEIGHT = 720
