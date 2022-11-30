@@ -11,7 +11,7 @@ from src.OLED.waveshare_OLED import OLED_1in5_rgb
 from PIL import Image,ImageDraw,ImageFont
 logging.basicConfig(level=logging.DEBUG)
 
-def displayMessage():
+def displayMessage(message):
     try:
         disp = OLED_1in5_rgb.OLED_1in5_rgb()
 
@@ -32,7 +32,7 @@ def displayMessage():
         draw.line([(0,127),(127,127)], fill = "RED")
         draw.line([(127,0),(127,127)], fill = "RED")
         logging.info ("***draw text")
-        draw.text((20,0), 'Blackjack ', font = font, fill = "BLUE")
+        draw.text((20,0), 'Blackjack ', font = font, fill = "BLUE") # replace text w/ message later
         image1 = image1.rotate(0)
         disp.ShowImage(disp.getbuffer(image1))
         time.sleep(5)
