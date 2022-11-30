@@ -16,6 +16,7 @@ FRAME_HEIGHT = 720
 FPS = 20
 
 pygame.init()
+pygame.font.init()
 bounds = (1024, 768)
 window = pygame.display.set_mode(bounds)
 pygame.display.set_caption("BlackjackVision")
