@@ -35,7 +35,7 @@ def displayMessage(message):
         draw.line([(0,127),(127,127)], fill = "RED")
         draw.line([(127,0),(127,127)], fill = "RED")
         logging.info ("***draw text")
-        draw.text((20,50), message, font = font, fill = "BLUE") # replace text w/ message later
+        draw.text((15,50), message, font = font, fill = "BLUE") # replace text w/ message later
         image1 = image1.rotate(0)
         disp.ShowImage(disp.getbuffer(image1))
         time.sleep(5)
