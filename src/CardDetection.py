@@ -152,9 +152,10 @@ class CardDetection:
                                 if len(cardiB)>2:
                                     prediction=""
                                     result = black("Basic Strategy Section 4", cardiB)
-                                    for i in range(len(result)):
-                                        prediction+=" "+i
-                                    renderGame(window, prediction if prediction!=None else "idk")
+                                    if result!=None:
+                                        for i in result:
+                                            prediction+=" "+i
+                                    renderGame(window, prediction if prediction!="" else "stand")
                                     displayMessage(prediction)
                                     pygame.display.update()
                                     print(count)
