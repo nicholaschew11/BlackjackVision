@@ -140,19 +140,17 @@ class CardDetection:
                                 cardSuit=cards[k].best_suit_match
                                 cardiB.append((rank[cards[k].best_rank_match][0]+cardSuit[0].lower(),rank[cards[k].best_rank_match][1],rank[cards[k].best_rank_match][0]))
                                 print(len(cardiB))
-                                try:
-                                    if len(cardiB)>2:
-                                        result = black("Basic Strategy Section 4", cardiB)
-                                        print(result[len(cardiB)-3])
-                                        prediction=result[len(cardiB)-3]
-                                        renderGame(window,prediction)
-                                        pygame.display.update()
-                                        print(count)
-                                        if(count%350==0):
-                                            prediction = random.choice(currHand)
-                                            addtohand(random.choice(cardtype), random.randrange(1, 13, 1)) 
-                                except:
-                                    print('asd')
+
+                                if len(cardiB)>2:
+                                    result = black("Basic Strategy Section 4", cardiB)
+                                    print(result[len(cardiB)-3])
+                                    prediction=result[len(cardiB)-3]
+                                    renderGame(window,prediction)
+                                    pygame.display.update()
+                                    print(count)
+                                    if(count%350==0):
+                                        prediction = random.choice(currHand)
+                                        addtohand(random.choice(cardtype), random.randrange(1, 13, 1)) 
             
                         
                         # Draw center point and match result on the image.
