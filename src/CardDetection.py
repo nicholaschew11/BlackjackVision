@@ -5,7 +5,7 @@ import cv2
 import pygame
 import random
 
-from src.Blackjack import Blackjack
+from Blackjack import Blackjack
 from src.OLED.oled import displayMessage
 from src.Video import Video
 import src.Cards as Cards
