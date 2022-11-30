@@ -39,7 +39,7 @@ currHand =[]
 
 def addtohand(type, value):
   currHand.append(str(type+" - "+str(value)))
-  rHand.append(str("src/images/"+type+"-"+str(value)+".svg"))
+  rHand.append(str("/images/"+type+"-"+str(value)+".svg"))
 
 addtohand("CLUB", 5)
 print(rHand[0])
