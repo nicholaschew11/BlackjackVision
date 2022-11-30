@@ -10,6 +10,6 @@ from src.OLED.oled import displayMessage
 
 
 if __name__ == "__main__":
-    displayMessage()
+    displayMessage("Blackjack")
     cardDetection = CardDetection()
     cardDetection.run()
