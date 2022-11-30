@@ -215,13 +215,9 @@ Project Link: [https://github.com/nicholaschew11/BlackjackVision](https://github
 [forks-url]: https://github.com/nicholaschew11/BlackjackVision/network/members
 [stars-shield]: https://img.shields.io/github/stars/nicholaschew11/BlackjackVision.svg?style=for-the-badge
 [stars-url]: https://github.com/nicholaschew11/BlackjackVision/stargazers
-[issues-shield]: https://img.shields.io/github/issues/nicholaschew11/BlackjackVision.svg?style=for-the-badge
-[issues-url]: https://github.com/nicholaschew11/BlackjackVision/issues
-[license-shield]: https://img.shields.io/github/license/nicholaschew11/BlackjackVision.svg?style=for-the-badge
-[license-url]: https://github.com/nicholaschew11/BlackjackVision/blob/master/LICENSE.txt
 [linkedin-shield]: https://img.shields.io/badge/-LinkedIn-black.svg?style=for-the-badge&logo=linkedin&colorB=555
 [linkedin-url]: https://linkedin.com/in/linkedin_username
-[product-screenshot]: images/screenshot.png
+[product-screenshot]: images/Ace.jpg
 [Next.js]: https://img.shields.io/badge/next.js-000000?style=for-the-badge&logo=nextdotjs&logoColor=white
 [Next-url]: https://nextjs.org/
 [React.js]: https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB
