@@ -3,7 +3,7 @@ import time
 import cv2
 import sys
 
-sys.path.insert(1, '/OLED')
+sys.path.insert(1, '/src/OLED')
 
 from src.CardDetection import CardDetection
 
