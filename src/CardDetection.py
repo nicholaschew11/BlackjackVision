@@ -155,7 +155,8 @@ class CardDetection:
                                     if result!=None:
                                         for i in result:
                                             prediction+=" "+i
-                                    renderGame(window, prediction if prediction!="" else "stand")
+                                    prediction = prediction if prediction!="" else "stand"
+                                    renderGame(window, prediction)
                                     displayMessage(prediction)
                                     pygame.display.update()
                                     print(count)
