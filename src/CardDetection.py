@@ -149,8 +149,7 @@ class CardDetection:
 
                                 if len(cardiB)>2:
                                     result = black("Basic Strategy Section 4", cardiB)
-                                    print(result[len(cardiB)-3])
-                                    prediction=result[len(cardiB)-3]
+                                    prediction=result[-1]
                                     renderGame(window,prediction)
                                     pygame.display.update()
                                     print(count)
