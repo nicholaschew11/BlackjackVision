@@ -1,7 +1,6 @@
 import os
 import time
 import cv2
-from file import function
 import sys
 
 sys.path.insert(1, '/OLED')
