@@ -58,7 +58,7 @@ def renderGame(window,prediction):
   window.blit(text, (300, 0))
   window.blit(pygame.image.load("src/images/rich.png"),(670,10))
   window.blit(pygame.image.load("src/images/nerd.png"),(760,10))
-  if prediction == " Blackjack!":
+  if prediction == "Blackjack!":
     text1 = font1.render(str(prediction), True, (255,255,255))
   else:
     text1 = font1.render(str("Optimal Next Play:"+prediction), True, (255,255,255))
@@ -154,9 +154,9 @@ class CardDetection:
                                     prediction=""
                                     result = black("Basic Strategy Section 4", cardiB)
                                     if result!=None:
-                                        for i in result:
-                                            prediction+=" "+i
-                                    prediction = prediction if prediction!="" else "stand"
+                                        prediction = result[0]
+                                    else:
+                                        prediction= "stand"
                                     renderGame(window, prediction)
                                     displayMessage(prediction)
                                     pygame.display.update()
