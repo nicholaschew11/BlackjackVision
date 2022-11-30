@@ -471,7 +471,7 @@ class Table:
         if self.player_hands[0].blackjack:                  # Player has a Blackjack.
             if self.dealer.blackjack:                       # Dealer also has a Blackjack,
                 self.win(self.player_hands[0].stake)        # ... so player wins his stake back.
-                return ["Both blackjack ... win your stake back"]
+                return ["Both blackjack play again"]
             else:                                           # Player has Blackjack, and dealer doesn't have one,
                 # ... so he wins his stake back, plus his stake multiplied by Blackjack odds.
                 self.win(self.player_hands[0].stake + self.blackjack_value * self.player_hands[0].stake)
