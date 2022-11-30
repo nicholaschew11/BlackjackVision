@@ -3,11 +3,10 @@ import time
 import cv2
 import sys
 
-sys.path.insert(1, '/src/OLED')
 
 from src.CardDetection import CardDetection
 
-from oled import displayMessage
+from src.OLED.oled import displayMessage
 
 
 if __name__ == "__main__":
