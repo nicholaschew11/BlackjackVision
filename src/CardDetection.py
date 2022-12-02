@@ -125,7 +125,9 @@ class CardDetection:
                 cards = []
                 k = 0
                 
-                rank={'Ace':['A',[1,11]],'Two':['2',[2]],'Three':['3',[3]],'Four':['4',[4]],'Five':['5',[5]],'Six':['6',[6]],'Seven':['7',[7]],'Eight':['8',[8]],'Nine':['9',[9]],'Ten':['T',[10]],'Jack':['J',[10]],'Queen':['Q',[10]],'King':['K',[10]],'Unknown':None}
+                rank={'Ace':['A',[1,11],1],'Two':['2',[2],2],'Three':['3',[3],3],'Four':['4',[4],4],'Five':['5',[5],5],'Six':['6',[6],6],'Seven':['7',[7],7],'Eight':['8',[8],8],'Nine':['9',[9],9],'Ten':['T',[10],10],'Jack':['J',[10],11],'Queen':['Q',[10],12],'King':['K',[10],13],'Unknown':None}
+                suit={'C':"CLUB","H":"HEART","D":"DIAMOND","S":"SPADE"}
+
                 # For each contour detected:
                 for i in range(len(cnts_sort)):
                     if (cnt_is_card[i] == 1):
@@ -151,6 +153,7 @@ class CardDetection:
                                 print(len(cardiB))
 
                                 if len(cardiB)>2:
+                                    addtohand(suit[cardSuit[0].upper()],rank[cards[k].best_rank_match][2])
                                     prediction=""
                                     result = black("Basic Strategy Section 4", cardiB)
                                     if result!=None:
