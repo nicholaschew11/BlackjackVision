@@ -148,9 +148,13 @@ class CardDetection:
                                 self.arr.append(cardName)
                                 #dictionary to store suits and rank keys + values
                                 cardSuit=cards[k].best_suit_match
+                               
                                 cardiB.append((rank[cards[k].best_rank_match][0]+cardSuit[0].lower(),rank[cards[k].best_rank_match][1],rank[cards[k].best_rank_match][0]))
-                                print(len(cardiB))
-
+                                print(len(cardiB)) 
+                                if len(cardiB)>1:
+                                  addtohand(suit[cardSuit[0].upper()],rank[cards[k].best_rank_match][2])
+                                  renderGame(window, prediction)
+                                  pygame.display.update()
                                 if len(cardiB)>2:
                                     prediction=""
                                     result = black("Basic Strategy Section 4", cardiB)
@@ -158,7 +162,6 @@ class CardDetection:
                                         prediction = result[0]
                                     else:
                                         prediction= "stand"
-                                    addtohand(suit[cardSuit[0].upper()],rank[cards[k].best_rank_match][2])
                                     renderGame(window, prediction)
                                     displayMessage(prediction)
                                     pygame.display.update()
