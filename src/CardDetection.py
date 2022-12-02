@@ -41,7 +41,7 @@ def addtohand(type, value):
   currHand.append(str(type+" - "+str(value)))
   rHand.append(str("src/images/"+type+"-"+str(value)+".png"))
 
-print(rHand[0])
+
 
 def renderGame(window,prediction):
   window.fill((94,174,235))
