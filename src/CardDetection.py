@@ -153,7 +153,7 @@ class CardDetection:
                                 print(len(cardiB)) 
                                 if len(cardiB)>1:
                                   addtohand(suit[cardSuit[0].upper()],rank[cards[k].best_rank_match][2])
-                                  renderGame(window, prediction)
+                                  renderGame(window, "")
                                   pygame.display.update()
                                 if len(cardiB)>2:
                                     prediction=""
