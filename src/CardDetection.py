@@ -41,7 +41,6 @@ def addtohand(type, value):
   currHand.append(str(type+" - "+str(value)))
   rHand.append(str("src/images/"+type+"-"+str(value)+".png"))
 
-addtohand("CLUB", 5)
 print(rHand[0])
 
 def renderGame(window,prediction):
@@ -153,20 +152,17 @@ class CardDetection:
                                 print(len(cardiB))
 
                                 if len(cardiB)>2:
-                                    addtohand(suit[cardSuit[0].upper()],rank[cards[k].best_rank_match][2])
                                     prediction=""
                                     result = black("Basic Strategy Section 4", cardiB)
                                     if result!=None:
                                         prediction = result[0]
                                     else:
                                         prediction= "stand"
+                                    addtohand(suit[cardSuit[0].upper()],rank[cards[k].best_rank_match][2])
                                     renderGame(window, prediction)
                                     displayMessage(prediction)
                                     pygame.display.update()
                                     print(count)
-                                    if(count%350==0):
-                                        prediction = random.choice(currHand)
-                                        addtohand(random.choice(cardtype), random.randrange(1, 13, 1)) 
             
                         
                         # Draw center point and match result on the image.
